@@ -13,4 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('welcome', function(){
+    return view('welcome');
+});
+
+Route::get('contact', function(){
+    return view('contact');
+});
+
 Route::get('/posts/{post}', 'PostsController@show');
