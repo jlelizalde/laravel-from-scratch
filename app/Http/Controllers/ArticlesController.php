@@ -26,15 +26,7 @@ class ArticlesController extends Controller
 
     public function store()
     {
-        $validatedAttributes = request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required'
-        ]);
-
-        // This requires explicit permission on Article model
-        // Check update method to see inlined version of this
-        Article::create($validatedAttributes);
+        Article::create($this->validateArticle());
 
         return redirect('/articles');
     }
@@ -48,12 +40,17 @@ class ArticlesController extends Controller
 
     public function update(Article $article)
     {
-        $article->update(request()->validate([
+        $article->update($this->validateArticle());
+
+        return redirect('/articles/'.$article->id);
+    }
+
+    public function validateArticle()
+    {
+        return request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required'
-        ]));
-
-        return redirect('/articles/'.$article->id);
+        ]);
     }
 }
