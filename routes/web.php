@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-   return view('home');
+   return view('home', [
+       'articles' => App\Article::latest()->get()
+   ]);
 });
 
 Route::get('welcome', function(){
@@ -27,4 +29,7 @@ Route::get('contact', function(){
 
 Route::get('/posts/{post}', 'PostsController@show');
 
+Route::get('/articles', 'ArticlesController@index');
+Route::post('articles', 'ArticlesController@store');
+Route::get('/articles/create', 'ArticlesController@create');
 Route::get('/articles/{article}', 'ArticlesController@show');
