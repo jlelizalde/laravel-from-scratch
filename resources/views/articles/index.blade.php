@@ -13,7 +13,7 @@
             <h2>{{$article->title}}</h2>
 			</div>
 			<p>{{$article->excerpt}}</p>
-            <a href="/articles/{{ $article->id }}" class="button">Learn More</a> 
+            <a href="{{ route('articles.show', $article) }}" class="button">Learn More</a> 
         </div>
             
         @endforeach

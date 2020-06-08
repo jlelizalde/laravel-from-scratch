@@ -11,7 +11,7 @@ class ArticlesController extends Controller
     {
         $articles = Article::latest()->get();
 
-        return view('articles.index', ['articles' => $articles]);
+        return view('articles.index',['articles' => $articles]);
     }
     
     public function show(Article $article)
@@ -28,7 +28,7 @@ class ArticlesController extends Controller
     {
         Article::create($this->validateArticle());
 
-        return redirect('/articles');
+        return redirect(route('articles.index'));
     }
 
     public function edit(Article $article)
@@ -42,7 +42,7 @@ class ArticlesController extends Controller
     {
         $article->update($this->validateArticle());
 
-        return redirect('/articles/'.$article->id);
+        return redirect(route('articles.show', $article));
     }
 
     public function validateArticle()
