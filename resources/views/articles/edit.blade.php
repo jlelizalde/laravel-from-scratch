@@ -18,6 +18,9 @@
 
 				<div class="control">
 					<input type="text" class="input" name="title" id="title" value="{{ $article->title }}">
+					@error('title')
+						<p class="is-danger"> {{ $errors->first('title') }}</p>
+					@enderror
 				</div>
 			</div>
 
@@ -28,7 +31,10 @@
 			<div class="control">
 				<textarea class="textarea" name="excerpt" id="excertp">
                     {{ $article->excerpt }}
-                </textarea>
+				</textarea>
+				@error('title')
+					<p class="is-danger"> {{ $errors->first('title') }}</p>
+				@enderror
 			</div>
 
 			<div class="field">
@@ -37,7 +43,10 @@
 				<div class="control">
 					<textarea class="textarea" name="body" id="body">
                         {{ $article->body }}
-                    </textarea>
+					</textarea>
+					@error('title')
+						<p class="is-danger"> {{ $errors->first('title') }}</p>
+					@enderror
 				</div>
 			</div>
 
