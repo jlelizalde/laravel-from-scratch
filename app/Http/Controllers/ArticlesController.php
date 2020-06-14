@@ -26,12 +26,22 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('articles.create');
+        return view('articles.create',[
+            'tags' => Tag::all()
+        ]);
     }
 
     public function store()
     {
-        Article::create($this->validateArticle());
+        // This method validates all, even tags, but tags does not belong to
+        // the Article instance, so we have to take it out of the Article instantiation.
+        $this->validateArticle();
+        
+        $article = new Article(request(['title', 'excerpt', 'body']));
+        $article->user_id = 1; // Hardcoded as long as we don't have auth
+        $article->save();
+
+        $article->tags()->attach(request('tags'));
 
         return redirect(route('articles.index'));
     }
@@ -55,7 +65,8 @@ class ArticlesController extends Controller
         return request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
     }
 }
