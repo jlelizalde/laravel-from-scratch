@@ -33,7 +33,7 @@ Released   : 20140215
 						<li class="{{ Request::path() === '/' ? 'active' : ''}}"><a href="/" accesskey="1" title="">Home</a></li>
 						<li class="{{ Request::path() === 'articles' ? 'active' : ''}}"><a href="/articles" accesskey="2" title="">Articles</a></li>
 						<li class="{{ Request::path() === 'about' ? 'active' : ''}}"><a href="#" accesskey="3" title="">About Us</a></li>
-						<li class="{{ Request::path() === 'contact' ? 'active' : ''}}"><a href="#" accesskey="5" title="">Contact Us</a></li>
+						<li class="{{ Request::path() === 'contact' ? 'active' : ''}}"><a href="/contact" accesskey="5" title="">Contact Us</a></li>
 					</ul>
 				</div>
 			</div>
